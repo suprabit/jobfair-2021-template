@@ -5,6 +5,7 @@ Each user will receive a unique set of sensor IDs, and his goal will be to colle
 The collected data packet needs to be verifiable that it was produced by the original sensor, and not by a malicious third party.   
 
 ## Instructions
+- Register on [Infura](https://infura.io/) and create a token
 - Run `npm install` to install all required dependencies
 - Run the script with `npm start`
 
