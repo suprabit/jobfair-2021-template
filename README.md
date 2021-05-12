@@ -8,6 +8,11 @@ The collected data packet needs to be verifiable that it was produced by the ori
 - Run `npm install` to install all required dependencies
 - Run the script with `npm start`
 
+## Docs
+- elliptic curve library: https://github.com/indutny/elliptic#eddsa
+- mqtt library: https://github.com/mqttjs/MQTT.js#example
+- web3 library: https://web3js.readthedocs.io/en/v1.3.4/
+
 ## Task
 ### 1. step: Registration
 Firstly, users need to register in order to receive their tasks - a set of sensor IDs.
