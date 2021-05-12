@@ -4,22 +4,26 @@ Goal of this task is to demonstrate how can we utilize Blockchain technology to 
 Each user will receive a unique set of sensor IDs, and his goal will be to collect a data packet from each sensor. 
 The collected data packet needs to be verifiable that it was produced by the original sensor, and not by a malicious third party.   
 
+## Instructions
+- Run `npm install` to install all required dependencies
+- Run the script with `npm start`
 
-## 1. step: Registration
+## Task
+### 1. step: Registration
 Firstly, users need to register in order to receive their tasks - a set of sensor IDs.
 Registration is done by publishing `userID` to the `jobfair/register` MQTT topic.
 
-## 2. step: Collect task
+### 2. step: Collect task
 After the registration, user needs to fetch the tasks by subscribing to the `jobfair/tasks/<userID>` MQTT topic.
 Upon subscription, users will receive a message containing a list of sensor IDs in a `string[]`.
 
 
-## 3. step: Collect public keys
+### 3. step: Collect public keys
 In order to verify if the data packet was actually created by the sensor, and not some other malicious third party, user need to verify if the signature within the data packet is valid. Validity of the signature can only be checked with the public key of the sensor which is stored in the Device Registry smart contract.
 
 User can fetch the public key of the sensor by calling a `getDevice(deviceID)` method of the smart contract, while `deviceID` is the `sensorID` in our case. `getDevice(deviceID)` method returns a string public key in a hex format.
 
-## 4. step: Collect data from sensors
+### 4. step: Collect data from sensors
 Sensors publish their data to a `jobfair/<sensorID>` MQTT topic.
 Data is in a JSON format and it follows the next format:
 ```json
@@ -30,7 +34,7 @@ Data is in a JSON format and it follows the next format:
 }
 ```
 
-## 5. step: Send collected data to check validity
+### 5. step: Send collected data to check validity
 Users publish their collected data in a JSON format to a `jobfair/results/<userID>` MQTT topic. The format of the data should follow this:
 ```json
 {
