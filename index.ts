@@ -38,7 +38,7 @@ const DeviceRegisterContract = new web3.eth.Contract(
 );
 
 /**
- * This file should contain answers you send for validation
+ * This variable should contain answers you send for validation
  */
 let answer: SensorDataCollection = {};
 
