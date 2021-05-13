@@ -29,7 +29,7 @@ In order to verify if the data packet was actually created by the sensor, and no
 
 User can fetch the public key of the sensor by calling a `getDevice(deviceID)` method of the smart contract, while `deviceID` is the `sensorID` in our case. `getDevice(deviceID)` method returns a string public key in a hex format.
 
-### 4. step: Collect data from sensors
+### 4. step: Collect data and validate from sensors
 Sensors publish their data to a `jobfair/<sensorID>` MQTT topic.
 Data is in a JSON format and it follows the next format:
 ```json
@@ -40,6 +40,13 @@ Data is in a JSON format and it follows the next format:
 }
 ```
 
+Validation is done by hashing the payload part of the packet and passing it to a verify function with a public key of a sensor.
+
+```
+calculatedHash = hash(payload, hashingAlg)
+elliptic.key(sensorPublicKey).verify(calculatedHash, signature)
+```
+**Be sure that the `sensorPublicKey` doesn't have `0x` prefix at the beginning of the string.**
 ### 5. step: Send collected data to check validity
 Users publish their collected data in a JSON format to a `jobfair/results/<userID>` MQTT topic. The format of the data should follow this:
 ```json
